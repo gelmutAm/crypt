@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace cryptoTask1
 {
     public class Program
     {
         public static int Mod(int dividend, int divider)
         {
-            if(dividend < 0)
+            if (dividend < 0)
             {
                 return divider - (dividend % divider);
             }
-
             return dividend % divider;
         }
 
@@ -24,7 +22,7 @@ namespace cryptoTask1
 
             StringBuilder result = new StringBuilder();
 
-            for(int i = 0; i < message.Length; i++)
+            for (int i = 0; i < message.Length; i++)
             {
                 if (message[i] == ' ')
                 {
@@ -40,14 +38,25 @@ namespace cryptoTask1
 
             return result.ToString();
         }
-        
+
         public static string Decrypt(List<char> alphabet, string message, int alphabetLength, int k, int n)
         {
             message.ToLower();
 
             StringBuilder result = new StringBuilder();
 
-            for(int i = 0; i < message.Length; i++)
+            int inverted_n = 1;
+
+            for (int i = 1; i < alphabetLength; i++)
+            {
+                if (Mod(n * i, alphabetLength) == 1)
+                {
+                    inverted_n = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < message.Length; i++)
             {
                 if (message[i] == ' ')
                 {
@@ -56,13 +65,11 @@ namespace cryptoTask1
                 else
                 {
                     int finalSymbolCode = alphabet.IndexOf(message[i]);
-
                     if (finalSymbolCode <= k)
                     {
                         finalSymbolCode += alphabetLength;
                     }
-
-                    int originalSymbolCode = Mod((finalSymbolCode - k) / n, alphabetLength);
+                    int originalSymbolCode = Mod((finalSymbolCode - k) * inverted_n, alphabetLength);
                     result.Append(alphabet[originalSymbolCode]);
                 }
             }
@@ -77,10 +84,9 @@ namespace cryptoTask1
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '?', '!', ',', ';', ':', '-', '(', ')', '"' };
 
             string message = Console.ReadLine();
-
-            string shiphr = Encrypt(alphabet, message, 53, 2, 3);
-            Console.WriteLine(shiphr);
-            Console.WriteLine(Decrypt(alphabet, shiphr, 53, 2, 3));
+            string cipher = Encrypt(alphabet, message, 53, 29, 5);
+            Console.WriteLine(cipher);
+            Console.WriteLine(Decrypt(alphabet, cipher, 53, 29, 5));
         }
     }
 }
