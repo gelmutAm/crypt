@@ -8,6 +8,16 @@ namespace cryptoTask1
 {
     public class Program
     {
+        public static int Mod(int dividend, int divider)
+        {
+            if(dividend < 0)
+            {
+                return divider - (dividend % divider);
+            }
+
+            return dividend % divider;
+        }
+
         public static string Encrypt(List<char> alphabet, string message, int alphabetLength, int k, int n)
         {
             message.ToLower();
@@ -23,7 +33,7 @@ namespace cryptoTask1
                 else
                 {
                     int originalSymbolCode = alphabet.IndexOf(message[i]);
-                    int finalSimbolCode = (originalSymbolCode * n + k) % alphabetLength;
+                    int finalSimbolCode = Mod(originalSymbolCode * n + k, alphabetLength);
                     result.Append(alphabet[finalSimbolCode]);
                 }
             }
@@ -47,12 +57,12 @@ namespace cryptoTask1
                 {
                     int finalSymbolCode = alphabet.IndexOf(message[i]);
 
-                    //if (finalSymbolCode <= k)
-                    //{
-                    //    finalSymbolCode += alphabetLength;
-                    //}
+                    if (finalSymbolCode <= k)
+                    {
+                        finalSymbolCode += alphabetLength;
+                    }
 
-                    int originalSymbolCode = ((finalSymbolCode - k) / (n % alphabetLength));
+                    int originalSymbolCode = Mod((finalSymbolCode - k) / n, alphabetLength);
                     result.Append(alphabet[originalSymbolCode]);
                 }
             }
