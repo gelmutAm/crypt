@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    class Program
+    public class Program
     {
         public static int Mod(int dividend, int divider)
         {
