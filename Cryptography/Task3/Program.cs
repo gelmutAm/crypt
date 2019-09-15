@@ -47,8 +47,7 @@ namespace Task3
 
                 if (text[i] != ' ' && text[i + 1] != ' ')
                 {
-                    temp.Append(text[i]);
-                    temp.Append(text[i + 1]);
+                    temp.AppendFormat($"{text[i]}{text[i + 1]}");
 
                     totalPairCount++;
 
