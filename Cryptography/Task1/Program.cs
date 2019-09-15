@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace cryptoTask1
+
+namespace Task1
 {
-    public class Program
+    class Program
     {
         public static int Mod(int dividend, int divider)
         {
