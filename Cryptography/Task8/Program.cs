@@ -17,6 +17,8 @@ namespace Task8
             
             tempAlphabet.AddRange(alphabet);
 
+            keyWord = new string(keyWord.Distinct().ToArray());
+
             for(int i = 0; i < keyWord.Length; i++)
             {
                 tempAlphabet.RemoveAt(tempAlphabet.IndexOf(keyWord[i]));
@@ -47,7 +49,7 @@ namespace Task8
             string text = FileManager.Read("input.txt");
             text = text.ToLower();
 
-            string cipher = PairEncryption(alphabet, "абвгдеёжзийклмнопрстуфхцчшщъ", text);
+            string cipher = PairEncryption(alphabet, "аабвгдеёжзийклмнопрстуфхцчшщъ", text);
             Console.WriteLine(cipher);
             Console.WriteLine(PairEncryption(alphabet, "абвгдеёжзийклмнопрстуфхцчшщъ", cipher));
         }
