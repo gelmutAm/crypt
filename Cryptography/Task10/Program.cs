@@ -7,7 +7,7 @@ using Task2;
 
 namespace Task10
 {
-    class Program
+    public class Program
     {
         public static string ColumnTranspositionEncryption(string keyWord, string text)
         {
@@ -118,7 +118,7 @@ namespace Task10
             return result.ToString();
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //string text = FileManager.Read("input.txt");
             //text = text.ToLower();
