@@ -21,14 +21,14 @@ namespace Task12
             Random random = new Random();
             for(int i = 0; i < registerLength; i++)
             {
-                startRegister.Add(random.Next(0, 1));
+                startRegister.Add(random.Next(0, 2));
             }
 
             while(key.Length < cipherLength)
             {
                 startRegister.Insert(0, Task1.Program.Mod((startRegister[0] + startRegister[startRegister.Count - 1]), 2));
-                key.Append(startRegister[startRegister.Count - 1]);
-                startRegister.RemoveAt(startRegister[startRegister.Count - 1]);
+                key.Append(startRegister.Last());
+                startRegister.RemoveAt(startRegister.Count - 1);
             }
 
             return key.ToString();
