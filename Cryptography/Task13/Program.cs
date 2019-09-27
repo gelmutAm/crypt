@@ -54,7 +54,7 @@ namespace Task13
             List<int> allModulusFactors = FindAllFactors(alphabet.Count);
             for(int i = 0; i < allModulusFactors.Count; i++)
             {
-                if(FindAllFactors(allModulusFactors[i]).Count == 1)
+                if(FindAllFactors(allModulusFactors[i]).Count == 2)
                 {
                     primeFactors.Add(allModulusFactors[i]);
                 }
